@@ -34,3 +34,14 @@ Once inside the VOID_OS terminal, use the following commands (or associated numb
 
 ## ⚠️ Warning
 This game is a **simulation**. No real hacking is performed. IP addresses and vulnerabilities are fictional.
+
+## 🤝 Community & Feedback
+
+**VOID_OS is currently in Alpha (V1), and I need your help to make it better!**
+
+I am actively looking for feedback from the community.
+*   Found a bug?
+*   Have an idea for a cool new feature?
+*   Want more complex hacking minigames?
+
+Please open an issue or leave a comment! Together, let's build the ultimate hacker simulator.
