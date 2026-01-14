@@ -1,21 +1,47 @@
-# VOID_OS (Web Version)
+# VOID_OS - The Hacker Simulator (Version 1)
 
-This is the web port of VOID_OS, designed to be hosted on GitHub Pages or any static site provider.
+Welcome to **VOID_OS**, a command-line hacker simulator developed for the Flavortown Hack Club Contest. Dive into a text-based cyberpunk universe where you play as a hacker striving to gain reputation and money.
 
-## How to Run Locally
-1. Simply double-click `index.html` to open it in your browser.
+## 🎮 Features
 
-## How to Host on GitHub Pages
-1. Push this `web` folder to your GitHub repository.
-2. Go to your Repository Settings > Pages.
-3. Under "Source", select "Deploy from a branch".
-4. Select your branch (usually `main`) and ensure the folder is set to `/web` (or root if you moved the files).
-5. Click Save. Your game will be live in a few minutes!
+*   **Immersive Interface**: A stylized terminal with text effects and color codes for a "hacker" atmosphere.
+*   **Network Scanning**: Scan for vulnerable IP addresses to find your next targets.
+*   **Intrusion System**: A "Brute Force" mini-game to crack passwords and access secure servers.
+*   **Economy & Reputation**: Earn money ($) and reputation (REP) by completing missions and stealing data.
+*   **Dark Market**: Buy tools and exploits to upgrade your hacking capabilities.
+*   **Save System**: Your progress (money, level, inventory) is saved automatically.
 
-## Features
-- **Persistent Save**: Progress is saved to your browser's LocalStorage.
-- **Retro Aesthetic**: CRT scanlines and terminal effects.
-- **Game Features**:
-    - Network Scanning
-    - Brute Force Cracking (Simulated)
-    - Dark Market & Jobs
+## 🚀 How to Run
+
+Make sure you have Python installed on your machine.
+
+1.  Open your terminal or the folder containing the game.
+2.  Run the main file:
+    ```bash
+    python hackathon_v1.py
+    ```
+
+## 🕹️ Main Commands
+
+Once inside the VOID_OS terminal, use the following commands (or associated numbers):
+
+*   `scan` or `1`: **Scan the network** to find targets.
+*   `connect` or `2`: **Connect** to a target IP (requires an IP found via scan).
+*   `jobs` or `3`: Check available **contracts** on the Dark Web.
+*   `darkmarket` or `4`: Access the **black market** to buy tools.
+*   `status` or `5`: View your current **status** (Level, Money, Inventory).
+*   `exit` or `7`: **Quit** the simulation.
+
+## ⚠️ Warning
+This game is a **simulation**. No real hacking is performed. IP addresses and vulnerabilities are fictional.
+
+## 🤝 Community & Feedback
+
+**VOID_OS is currently in Alpha (V1), and I need your help to make it better!**
+
+I am actively looking for feedback from the community.
+*   Found a bug?
+*   Have an idea for a cool new feature?
+*   Want more complex hacking minigames?
+
+Please open an issue or leave a comment! Together, let's build the ultimate hacker simulator.

@@ -1,0 +1,39 @@
+VOID_OS Devlog
+==========================================
+
+Devlog #1: Initial Release - Entering the Void
+Date: January 12, 2026
+Version: 1.0.0 (Alpha)
+
+[ INTRODUCTION ]
+Welcome to the first devlog for VOID_OS! This project started as a submission for the Flavortown Hack Club contest. The goal was to create a game that captures the essence of 80s/90s cyber-thrillers -- green text on black screens, cryptic commands, and the thrill of unauthorized access -- all within a simple terminal window.
+
+[ WHAT WE BUILT (SO FAR) ]
+
+For this initial V1 release, I focused on the core loop of the "skid" (script kiddie) experience:
+
+1. The Atmospheric Engine: 
+   Custom type_writer effects and ANSI color codes (like \033[92m for that classic hacker green) were essential. The game doesn't just print text; it streams it to simulate a slow connection or a retro CRT monitor.
+    
+2. Network Scanning:
+   The 'scan' command populates a list of targets with varying difficulty. I implemented a simple risk/reward system where harder servers have better protection but offer more loot.
+
+3. Brute Force Minigame:
+   Hacking isn't just typing "access granted". I added a visual "brute force" simulation where the code rapidly guesses characters. It's purely visual for now (success is RNG-weighted), but it sells the fantasy.
+
+4. The Economy:
+   Money earned from hacks can be spent in the Dark Market. Currently, you can buy "ScriptKiddie Toolsets", but the inventory system is built to support much more complex items in the future.
+
+[ CHALLENGES & LEARNING ]
+One of the fun challenges was handling the "game state" without a database. I opted for a JSON-based save system (void_os_save.json) which serializes the GameState class. It's simple, hackable (ironically), and works perfectly for a local Python game.
+
+[ WHAT'S NEXT? ]
+The community feedback is vital! Based on initial thoughts, here is the roadmap:
+* More Minigames: SQL Injection puzzles and buffer overflow challenges.
+* Better Story: A narrative layer where you uncover a corporate conspiracy.
+* GUI Version: Maybe experimenting with a retro-styled graphical interface?
+
+Stay tuned. The Void is listening.
+
+---
+Developed by [Your Name/Handle]
