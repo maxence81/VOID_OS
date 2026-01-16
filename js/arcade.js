@@ -2,7 +2,6 @@ export class Arcade {
     constructor(terminal) {
         this.term = terminal;
     }
-
     startSnake() {
         // Implementation of Snake game in ASCII
         this.term.print("Initializing FIREWALL_BREACH (Snake 1.0)...");
@@ -12,7 +11,6 @@ export class Arcade {
         this.food = { x: 15, y: 15 };
         this.score = 0;
     }
-
     // Hex Dump Minigame
     startHexDump(difficulty) {
         const rows = 20;

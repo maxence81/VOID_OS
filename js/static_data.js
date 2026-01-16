@@ -1,5 +1,3 @@
-/* MASSIVE STATIC DATASETS FOR VOID_OS */
-
 export const STATIC_USERS = [
     { id: 1000, username: 'user_1000', role: 'admin', password_hash: '0de4f31c4c3e8abc07560bc62b10d6d6', last_login: '2026-01-14' },
     { id: 1001, username: 'user_1001', role: 'service', password_hash: '6d105ab7325ac6060a50f644b2c0f30e', last_login: '2026-01-26' },
@@ -5002,7 +5000,6 @@ export const STATIC_USERS = [
     { id: 5998, username: 'user_5998', role: 'service', password_hash: '2278410f463592e2ac53dee5b66aa766', last_login: '2026-01-19' },
     { id: 5999, username: 'user_5999', role: 'root', password_hash: '1e1876963998e68335330fd9be3048e4', last_login: '2026-01-03' },
 ];
-
 export const FILE_SIGNATURES = {
     'file_0.bin': '1b03fba340bd4351',
     'file_1.bin': 'a43e5c91c989467b',
@@ -7005,7 +7002,6 @@ export const FILE_SIGNATURES = {
     'file_1998.bin': '22e3d7a1b2877b48',
     'file_1999.bin': 'ba4b40f7ba00da9e',
 };
-
 export const STATIC_NETWORK_MAP = [
     { ip: '87.221.53.178', geo: { lat: 81.4833, lon: 87.8223 }, region: 'Region_17' },
     { ip: '84.190.176.57', geo: { lat: 21.1363, lon: -39.5816 }, region: 'Region_26' },

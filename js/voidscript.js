@@ -3,15 +3,12 @@ export class VoidScriptInterpreter {
         this.term = terminal;
         this.memory = {};
     }
-
     execute(script) {
         this.term.print("Executing VoidScript...", "header");
         const lines = script.split('\n');
-
         for (let line of lines) {
             line = line.trim();
             if (!line || line.startsWith('//')) continue;
-
             try {
                 this.parseLine(line);
             } catch (e) {
@@ -20,13 +17,11 @@ export class VoidScriptInterpreter {
             }
         }
     }
-
     parseLine(line) {
         // Simple syntax: COMMAND ARG1 ARG2
         const parts = line.split(' ');
         const cmd = parts[0];
         const args = parts.slice(1);
-
         switch (cmd) {
             case 'print':
                 this.term.print(args.join(' '));

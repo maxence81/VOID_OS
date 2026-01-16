@@ -1,9 +1,7 @@
-
 const terminal = document.getElementById('terminal');
 const output = document.getElementById('output');
 const inputField = document.getElementById('command-input');
 const promptUser = document.getElementById('prompt-user');
-
 // --- Game State ---
 const state = {
     username: "GUEST",
@@ -15,7 +13,6 @@ const state = {
     mission_log: [],
     isRunning: true
 };
-
 // --- Utilities ---
 const Colors = {
     HEADER: 'header',
@@ -27,64 +24,51 @@ const Colors = {
     ENDC: '',
     BOLD: 'bold'
 };
-
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
 function clearScreen() {
     output.innerHTML = '';
 }
-
 function print(text, className = '') {
     const p = document.createElement('div');
     if (className) p.classList.add(className);
-
     // Convert newlines to breaks if it's plain text, but usually we handle pre-formatted strings
     // Simple HTML safety
     p.textContent = text;
-
     // If text contains ASCII art or needs whitespace preservation
     if (text.includes('█') || text.includes('>>')) {
         p.innerHTML = `<pre>${text}</pre>`;
     }
-
     output.appendChild(p);
     terminal.scrollTop = terminal.scrollHeight;
 }
-
 function printHTML(html) {
     const p = document.createElement('div');
     p.innerHTML = html;
     output.appendChild(p);
     terminal.scrollTop = terminal.scrollHeight;
 }
-
 async function typeWriter(text, speed = 30, className = '') {
     const p = document.createElement('div');
     if (className) p.classList.add(className);
     output.appendChild(p);
-
     for (let char of text) {
         p.textContent += char;
         terminal.scrollTop = terminal.scrollHeight;
         await sleep(speed);
     }
 }
-
 async function loadingBar(duration, message = "Processing") {
     const p = document.createElement('div');
     p.textContent = message + " [";
     output.appendChild(p);
-
     const bar = document.createElement('span');
     p.appendChild(bar);
     p.appendChild(document.createTextNode("]"));
-
     const totalSteps = 20;
     for (let i = 0; i < totalSteps; i++) {
         bar.textContent += "=";
         await sleep(duration * 1000 / totalSteps);
     }
-
     const done = document.createElement('span');
     done.textContent = " DONE";
     done.classList.add('green');
@@ -92,7 +76,6 @@ async function loadingBar(duration, message = "Processing") {
     terminal.scrollTop = terminal.scrollHeight;
     print(""); // New line
 }
-
 // --- Content ---
 const LOGO = `
     ██╗   ██╗ ██████╗ ██╗██████╗         ██████╗ ███████╗
@@ -102,22 +85,18 @@ const LOGO = `
      ╚████╔╝ ╚██████╔╝██║██████╔╝       ╚██████╔╝███████║
       ╚═══╝   ╚═════╝ ╚═╝╚═════╝         ╚═════╝ ╚══════╝
 `;
-
 function printLogo() {
     printHTML(`<pre class="cyan">${LOGO}</pre>`);
     print("    >> TERMINAL ACCESS GRANTED <<", "green");
     print("    >> VERSION 1.0.0 <<", "blue");
     print("");
 }
-
 // --- Logic ---
 async function bootSequence() {
     clearScreen();
     // Ensure input is hidden at start
     document.querySelector('.input-line').style.display = 'none';
-
     printLogo();
-
     // Check local storage
     const saved = localStorage.getItem('void_os_save');
     if (saved) {
@@ -128,7 +107,6 @@ async function bootSequence() {
         mainMenu();
         return;
     }
-
     await sleep(1000);
     await typeWriter("Welcome to VOID_OS.", 50, "header");
     await typeWriter("Initializing kernel...", 50);
@@ -137,7 +115,6 @@ async function bootSequence() {
     await sleep(500);
     await typeWriter("Bypassing firewalls...", 50);
     await sleep(1000);
-
     if (state.username === "GUEST") {
         await typeWriter("Enter your handle, hacker:", 30);
         // Wait for input manually via a special state or prompt?
@@ -152,14 +129,11 @@ async function bootSequence() {
         return;
     }
 }
-
 function updatePrompt() {
     promptUser.textContent = state.username;
     promptUser.className = "green";
 }
-
 let inputCallback = null;
-
 function requestInput(callback) {
     const inputLine = document.querySelector('.input-line');
     inputLine.style.display = 'flex'; // Show input
@@ -168,12 +142,10 @@ function requestInput(callback) {
     inputField.focus();
     inputCallback = callback;
 }
-
 inputField.addEventListener('keydown', function (e) {
     if (e.key === 'Enter') {
         const val = inputField.value;
         print(`${state.username}@void:~$ ${val}`, 'dim'); // Echo
-
         inputField.value = '';
         if (inputCallback) {
             const cb = inputCallback;
@@ -184,7 +156,6 @@ inputField.addEventListener('keydown', function (e) {
         }
     }
 });
-
 async function mainMenu() {
     clearScreen();
     printLogo();
@@ -202,12 +173,9 @@ async function mainMenu() {
     print("-".repeat(60));
     // Ready for command
 }
-
 async function handleCommand(cmd) {
     cmd = cmd.toLowerCase().trim();
-
     if (!cmd) return;
-
     if (cmd === "scan" || cmd === "1") {
         await scanNetwork();
     } else if (cmd === "connect" || cmd === "2") {
@@ -230,7 +198,6 @@ async function handleCommand(cmd) {
         print("Unknown command.", "fail");
     }
 }
-
 // --- Commands ---
 const targets = [
     { ip: "192.168.0.105", name: "Corp_Guest_Wifi", difficulty: 1, reward: 50 },
@@ -238,15 +205,12 @@ const targets = [
     { ip: "172.16.42.99", name: "Pizza_Shop_POS", difficulty: 2, reward: 100 },
     { ip: "8.8.8.8", name: "Google_DNS_HoneyPot", difficulty: 99, reward: 0 },
 ];
-
 async function scanNetwork() {
     print("Initializing port scanner...", "cyan");
     await loadingBar(2.0, "Scanning IP Range 192.168.x.x");
-
     print("\nSCAN RESULTS:", "header");
     print(`IP ADDRESS           | HOSTNAME             | DIFFICULTY`);
     print("-".repeat(60));
-
     targets.forEach(t => {
         const stars = "*".repeat(t.difficulty);
         // Padding simulation
@@ -254,28 +218,21 @@ async function scanNetwork() {
         const namePad = t.name.padEnd(20, ' ');
         print(`${ipPad} | ${namePad} | ${stars}`);
     });
-
     print("\n[Use 'connect' to interact]");
 }
-
 async function connectServer() {
     await typeWriter("Enter Target IP:", 10, "green");
     requestInput(async (ip) => {
         if (!ip) { mainMenu(); return; }
-
         await typeWriter(`Handshaking with ${ip}...`, 30);
         await sleep(1000);
-
         print("[!] PASSWORD PROTECTED", "warn");
         print("Initiating Brute Force Module...");
-
         const password = "admin"; // Simulated
         let cracked = false;
-
         // Visual hacking effect
         const pElem = document.createElement('div');
         output.appendChild(pElem);
-
         for (let i = 0; i < 20; i++) {
             let guess = "";
             for (let j = 0; j < 8; j++) guess += String.fromCharCode(33 + Math.floor(Math.random() * 90));
@@ -283,21 +240,17 @@ async function connectServer() {
             await sleep(100);
         }
         pElem.textContent = `Trying: ${password}... MATCH!`;
-
         print("[+] ACCESS GRANTED", "green");
         await sleep(1000);
-
         hackingInterface(ip);
     });
 }
-
 function hackingInterface(ip) {
     clearScreen();
     print(`CONNECTED TO: ${ip}`, "fail");
     print("1. [download] - Steal Data");
     print("2. [upload]   - Install Virus");
     print("3. [disconnect]");
-
     requestInput(async (act) => {
         act = act.toLowerCase().trim();
         if (act === "download" || act === "1") {
@@ -319,7 +272,6 @@ function hackingInterface(ip) {
         }
     });
 }
-
 async function checkJobs() {
     clearScreen();
     print("DARK WEB CONTRACTS", "header");
@@ -329,13 +281,11 @@ async function checkJobs() {
     print("\n[Press Enter to return]");
     requestInput(() => mainMenu());
 }
-
 async function darkMarket() {
     clearScreen();
     print("ZERO DAY MARKET", "header");
     print("1. ScriptKiddie Toolset ($50)");
     print("2. SQL Injection Automator ($200)");
-
     print("\nBuy item (ID) or Enter to return:");
     requestInput((choice) => {
         if (choice === "1") {
@@ -355,7 +305,6 @@ async function darkMarket() {
         setTimeout(mainMenu, 1000);
     });
 }
-
 function showStatus() {
     clearScreen();
     print(`Stats for ${state.username}`);
@@ -365,6 +314,5 @@ function showStatus() {
     print("\n[Press Enter to return]");
     requestInput(() => mainMenu());
 }
-
 // Start
 bootSequence();

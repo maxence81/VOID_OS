@@ -1,19 +1,16 @@
 import { MailSystem } from './mail.js';
-
 export class StoryController {
     constructor(mailSystem, terminal) {
         this.mail = mailSystem;
         this.term = terminal;
         this.progress = 0;
     }
-
     checkTriggers(state) {
         // Trigger 1: First Login
         if (this.progress === 0 && state.username !== "GUEST") {
             this.progress++;
             this.sendFirstMail();
         }
-
         // Trigger 2: Connected to first server
         if (this.progress === 1 && state.connectedServer) {
             this.progress++;
@@ -23,7 +20,6 @@ export class StoryController {
             }, 3000);
         }
     }
-
     sendFirstMail() {
         this.mail.addMail(
             "The Shad0w",

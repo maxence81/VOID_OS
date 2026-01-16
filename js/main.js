@@ -5,7 +5,6 @@ import { AudioSystem } from './audio.js';
 import { MailSystem } from './mail.js';
 import { StoryController } from './story.js';
 import { Colors, sleep } from './utils.js';
-
 class Game {
     constructor() {
         this.term = new Terminal();
@@ -14,40 +13,32 @@ class Game {
         this.audio = new AudioSystem();
         this.mail = new MailSystem();
         this.story = new StoryController(this.mail, this.term);
-
         this.state = {
             username: "GUEST",
             money: 0,
             rep: 0,
             connectedServer: null
         };
-
         // Hook audio to terminal
         this.term.onType = () => this.audio.playKeySound();
-
         this.init();
     }
-
     async init() {
         // Event Listener for commands
         document.addEventListener('terminal-command', (e) => this.handleCommand(e.detail));
-
         // Enable audio on first click (browser policy)
         document.body.addEventListener('click', () => {
             if (this.audio.ctx.state === 'suspended') this.audio.ctx.resume();
         }, { once: true });
-
         this.term.setInputVisible(false);
         await this.bootSequence();
     }
-
     async bootSequence() {
         this.audio.playBoot();
         this.term.printLogo();
         await this.term.type("Welcome to VOID_OS 2.5 (Contest Edition)", 30, Colors.HEADER);
         console.log("Booting...");
         await sleep(500);
-
         // Load Save
         const saved = localStorage.getItem('void_os_save_v2');
         if (saved) {
@@ -59,7 +50,6 @@ class Game {
             this.mainHelp();
             return;
         }
-
         if (this.state.username === "GUEST") {
             await this.term.type("Enter identity:", 30);
             this.term.requestInput((val) => {
@@ -71,7 +61,6 @@ class Game {
             });
         }
     }
-
     mainHelp() {
         this.term.print("\nCOMMANDS:", Colors.HEADER);
         this.term.print("  scan      : Discover networks");
@@ -81,12 +70,10 @@ class Game {
         this.term.print("  help      : This menu");
         this.term.setInputVisible(true);
     }
-
     async handleCommand(cmdRaw) {
         const parts = cmdRaw.trim().split(' ');
         const cmd = parts[0].toLowerCase();
         const args = parts.slice(1);
-
         if (cmd === 'help') {
             this.mainHelp();
         }
@@ -107,7 +94,6 @@ class Game {
             this.audio.playTone(400, 'square', 0.1);
             await sleep(1000);
             this.audio.playTone(600, 'square', 0.1);
-
             this.network.servers.forEach(s => {
                 this.term.print(`${s.ip.padEnd(16)} | ${s.hostname}`);
             });
@@ -142,5 +128,4 @@ class Game {
         }
     }
 }
-
 window.game = new Game();
