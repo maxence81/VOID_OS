@@ -1,7 +1,11 @@
 # 🖥️ VOID_OS — Hacker Simulator
 
 <p align="center">
+<<<<<<< HEAD
   <img src="https://img.shields.io/badge/version-1.1.0-green?style=flat-square" alt="Version">
+=======
+  <img src="https://img.shields.io/badge/version-2.0-green?style=flat-square" alt="Version">
+>>>>>>> 14f7494a6a43ce282e955b06a7080ee001d0cffe
   <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="License">
   <img src="https://img.shields.io/badge/platform-Web-orange?style=flat-square" alt="Platform">
 </p>
